@@ -8,5 +8,4 @@ function Initialize-OhMyPoshFont {
     if ($Families -notcontains "FiraCode NF") {
         oh-my-posh font install FiraCode
     }
-    Write-Host "Be sure to change your terminal font to FiraCode NF manually."
 }
