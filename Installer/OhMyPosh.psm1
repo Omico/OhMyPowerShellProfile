@@ -1,5 +1,5 @@
 function Initialize-OhMyPoshFont {
-    if (-Not(Test-Command "oh-my-posh")) {
+    if (-Not (Test-Command "oh-my-posh")) {
         Write-Warning "Oh My Posh is not installed."
         return
     }

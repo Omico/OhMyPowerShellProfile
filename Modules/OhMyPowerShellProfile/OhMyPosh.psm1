@@ -1,5 +1,5 @@
 function Initialize-OhMyPosh {
-    if (-Not(Test-Command "oh-my-posh")) {
+    if (-Not (Test-Command "oh-my-posh")) {
         return
     }
     oh-my-posh init pwsh --config $env:POSH_THEMES_PATH\agnoster.omp.json | Invoke-Expression

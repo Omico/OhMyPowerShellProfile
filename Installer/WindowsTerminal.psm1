@@ -4,12 +4,12 @@ function Initialize-WindowsTerminal {
     $WindowsTerminalSettings = Get-Content -Raw $WindowsTerminalSettingsFile | ConvertFrom-Json
 
     $WindowsTerminalSettings.profiles.defaults = @{
-        "colorScheme"       = "One Half Dark"
-        "font"              = @{
+        "colorScheme" = "One Half Dark"
+        "font" = @{
             "face" = "FiraCode NF"
         }
-        "opacity"           = 70
-        "useAcrylic"        = $true
+        "opacity" = 70
+        "useAcrylic" = $true
         "startingDirectory" = $null
     }
 

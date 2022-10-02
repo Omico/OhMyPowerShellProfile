@@ -5,11 +5,11 @@ function Initialize-PSReadLine {
     }
     $PSReadLineOptions = @{
         HistorySearchCursorMovesToEnd = $true
-        PredictionSource              = "HistoryAndPlugin"
-        Colors                        = @{
+        PredictionSource = "HistoryAndPlugin"
+        Colors = @{
             InlinePrediction = [ConsoleColor]::Blue
-            Operator         = [ConsoleColor]::Yellow
-            Parameter        = [ConsoleColor]::Green
+            Operator = [ConsoleColor]::Yellow
+            Parameter = [ConsoleColor]::Green
         }
     }
     Set-PSReadLineOption @PSReadLineOptions
