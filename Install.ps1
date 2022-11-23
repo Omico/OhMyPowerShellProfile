@@ -1,5 +1,10 @@
 Set-Location $PSScriptRoot
 
+if ([System.Environment]::OSVersion.Version.Build -lt 22621) {
+    Write-Host "This script requires Windows 11 22H2 (OS build 22621) or later."
+    exit 1
+}
+
 if (-Not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
     if ([int](Get-CimInstance -Class Win32_OperatingSystem | Select-Object -ExpandProperty BuildNumber) -ge 6000) {
         $Command = "-NoProfile -File `"" + $MyInvocation.MyCommand.Path + "`" " + $MyInvocation.UnboundArguments
@@ -21,6 +26,9 @@ Enable-WindowsFeatures
 
 Write-Host "Uninstalling provisioned packages..."
 Uninstall-ProvisionedPackages
+
+Write-Host "Installing WSL..."
+Install-WSL
 
 Write-Host "Installing PowerShell modules..."
 Initialize-PowerShellModules
