@@ -9,17 +9,18 @@ if (-Not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdenti
     if ([int](Get-CimInstance -Class Win32_OperatingSystem | Select-Object -ExpandProperty BuildNumber) -ge 6000) {
         $Command = "-NoProfile -File `"" + $MyInvocation.MyCommand.Path + "`" " + $MyInvocation.UnboundArguments
         Start-Process -FilePath pwsh -Verb RunAs -ArgumentList $Command
-        Exit;
+        exit
     }
 }
 
-Get-ChildItem -Path .\Installer -Filter *.psm1 | ForEach-Object {
-    Import-Module $_.FullName
+function Import-Modules([Parameter(Mandatory = $true)][string]$Path) {
+    Get-ChildItem -Path $Path -Filter *.psm1 | ForEach-Object {
+        Import-Module $_.FullName
+    }
 }
 
-Get-ChildItem -Path .\Modules\OhMyPowerShellProfile -Filter *.psm1 | ForEach-Object {
-    Import-Module $_.FullName
-}
+Import-Modules ".\Installer"
+Import-Modules ".\Modules\OhMyPowerShellProfile"
 
 Write-Host "Enabling Windows features..."
 Enable-WindowsFeatures
