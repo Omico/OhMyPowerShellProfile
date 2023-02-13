@@ -4,7 +4,6 @@ function Enable-WindowsFeatures {
         "Containers"
         "HypervisorPlatform"
         "Microsoft-Hyper-V-All"
-        "Microsoft-Windows-Subsystem-Linux"
         "NetFx3"
         "NetFx4-AdvSrvs"
         "VirtualMachinePlatform"
