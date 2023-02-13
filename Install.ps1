@@ -41,7 +41,7 @@ Write-Host "Initializing Oh My Posh..."
 Initialize-OhMyPoshFont
 Initialize-OhMyPosh
 
-Write-Host "Installing Windows Terminal..."
+Write-Host "Initializing Windows Terminal..."
 Initialize-WindowsTerminal
 
 Write-Host "Installation complete. Please restart your computer."
