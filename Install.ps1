@@ -22,14 +22,12 @@ function Import-Modules([Parameter(Mandatory = $true)][string]$Path) {
 Import-Modules ".\Installer"
 Import-Modules ".\Modules\OhMyPowerShellProfile"
 
-Write-Host "Enabling Windows features..."
+# Skip some steps in the virtual machine
 Enable-WindowsFeatures
+Install-WSL
 
 Write-Host "Uninstalling provisioned packages..."
 Uninstall-ProvisionedPackages
-
-Write-Host "Installing WSL..."
-Install-WSL
 
 Write-Host "Installing PowerShell modules..."
 Initialize-PowerShellModules

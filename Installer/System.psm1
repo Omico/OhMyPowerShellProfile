@@ -1,4 +1,6 @@
 function Enable-WindowsFeatures {
+    if (Test-IsVirtualMachine) { return }
+    Write-Host "Enabling Windows features..."
     $WindowsFeatures = @(
         "Client-ProjFS"
         "Containers"
