@@ -11,16 +11,24 @@ Start-Process wt -verb RunAs
 Make sure you have the right PowerShell execution policy.
 
 ```powershell
-Set-ExecutionPolicy RemoteSigned -Force
+Set-ExecutionPolicy Bypass -Force
 ```
 
-Finally, run the below command to execute the pre-install script.
+Run the below command to execute pre-install script.
 
 ```powershell
 ./Pre-Install.ps1
 ```
 
+Finally, close the terminal.
+
 ## Install
+
+Start a new terminal and run as administrator. Or, use the below command:
+
+```powershell
+Start-Process wt -verb RunAs pwsh
+```
 
 ```powershell
 ./Install.ps1
