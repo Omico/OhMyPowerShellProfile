@@ -14,9 +14,7 @@ if (-Not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdenti
 }
 
 function Import-Modules([Parameter(Mandatory = $true)][string]$Path) {
-    Get-ChildItem -Path $Path -Filter *.psm1 | ForEach-Object {
-        Import-Module $_.FullName
-    }
+    Get-ChildItem -Path $Path -Filter *.psm1 | Import-Module
 }
 
 Import-Modules ".\Installer"

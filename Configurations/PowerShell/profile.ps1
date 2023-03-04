@@ -1,9 +1,7 @@
 # Import-Module PSProfiler
 # Measure-Script { }
 
-Get-ChildItem -Path $PSScriptRoot\Modules\OhMyPowerShellProfile -Filter *.psm1 | ForEach-Object {
-    Import-Module $_.FullName
-}
+Get-ChildItem -Path $PSScriptRoot\Modules\OhMyPowerShellProfile -Filter *.psm1 | Import-Module
 
 $Modules = @(
     "Terminal-Icons"
