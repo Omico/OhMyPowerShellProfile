@@ -1,0 +1,36 @@
+{
+  "profiles": [
+    {
+      "id": "pc",
+      "winget": {
+        "groups": [
+          "development",
+          "extra"
+        ],
+        "packages": [
+          "Git.Git"
+        ]
+      }
+    }
+  ],
+  "winget": {
+    "core": [
+      "JanDeDobbeleer.OhMyPosh",
+      "Microsoft.OneDrive",
+      "Microsoft.PowerShell",
+      "Microsoft.VisualStudioCode"
+    ],
+    "groups": [
+      {
+        "id": "development",
+        "packages": [
+          "Axosoft.GitKraken"
+        ]
+      },
+      {
+        "id": "extra",
+        "packages": []
+      }
+    ]
+  }
+}

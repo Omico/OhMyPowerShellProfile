@@ -3,6 +3,9 @@
 
 Get-ChildItem -Path $PSScriptRoot\Modules\OhMyPowerShellProfile -Filter *.psm1 | Import-Module
 
+Set-GlobalOMPSProfilesConfiguration $PSScriptRoot\Modules\OhMyPowerShellProfile\profiles.json
+Set-GlobalOMPSProfileConfiguration
+
 $Modules = @(
     "Terminal-Icons"
     "PSWindowsUpdate"

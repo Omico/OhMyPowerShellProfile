@@ -11,7 +11,7 @@ function Initialize-PowerShellModules {
     }
 }
 
-function Initialize-PowerShellProfile($InstallScriptPath) {
+function Initialize-PowerShellProfile($InstallScriptPath, $ProfileId) {
     $UserPowershellDirectory = $PROFILE.TrimEnd("\") | Split-Path -Parent
     $UserPowershellModulesDirectory = "$UserPowershellDirectory\Modules"
     $OhMyPowerShellProfileDirectory = "$UserPowershellModulesDirectory\OhMyPowerShellProfile"
@@ -49,6 +49,15 @@ function Initialize-PowerShellProfile($InstallScriptPath) {
                 -CanHardLink $CanHardLink
         }
     }
+
+    New-ItemViaHardLinkOrCopy `
+        -Path "$OhMyPowerShellProfileDirectory\profiles.json" `
+        -Target "$InstallScriptPath\profiles.json" `
+        -CanHardLink $CanHardLink
+
+    New-Item -Path "$OhMyPowerShellProfileDirectory\Environments.psm1" -Force -Value `
+        "`$global:OMPSProfileId = `"$ProfileId`"`n" `
+        > $null
 }
 
 function Test-CanHardLink($Path, $Target) {

@@ -1,5 +1,17 @@
 Set-Location $PSScriptRoot
 
+if ($args[0] -in "--test", "-t") {
+    $ProfilesFile = "profiles.json.example"
+    $ProfileId = "pc"
+}
+else {
+    $ProfilesFile = "profiles.json"
+    $ProfileId = $args[0]
+    if ($null -eq $ProfileId) {
+        Write-Error "Please specify the profile id." -ErrorAction Stop
+    }
+}
+
 if ([System.Environment]::OSVersion.Version.Build -lt 22621) {
     Write-Host "This script requires Windows 11 22H2 (OS build 22621) or later."
     exit 1
@@ -20,6 +32,9 @@ function Import-Modules([Parameter(Mandatory = $true)][string]$Path) {
 Import-Modules ".\Installer"
 Import-Modules ".\Modules\OhMyPowerShellProfile"
 
+Set-GlobalOMPSProfilesConfiguration $ProfilesFile
+Set-GlobalOMPSProfileConfiguration $ProfileId
+
 # Skip some steps in the virtual machine
 Enable-WindowsFeatures
 Install-WSL
@@ -31,7 +46,7 @@ Write-Host "Installing PowerShell modules..."
 Initialize-PowerShellModules
 
 Write-Host "Initializing PowerShell profile..."
-Initialize-PowerShellProfile -InstallScriptPath $PSScriptRoot
+Initialize-PowerShellProfile $PSScriptRoot $ProfileId
 
 Write-Host "Initializing Oh My Posh..."
 Initialize-OhMyPoshFont
@@ -39,6 +54,9 @@ Initialize-OhMyPosh
 
 Write-Host "Initializing Windows Terminal..."
 Initialize-WindowsTerminal
+
+Write-Host "Installing WinGet packages..."
+Update-WinGetPackages
 
 Write-Host "Installation complete. Please restart your computer."
 $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown") | Out-Null
