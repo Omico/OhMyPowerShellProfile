@@ -1,23 +1,27 @@
 function Update-WinGetPackages {
     $AvailableUpgradesOutput = winget upgrade
+    $CurrentPackagesOutput = winget list
 
     # profiles core packages
-    _CheckApps $OMPSProfilesConfiguration.winget.core $AvailableUpgradesOutput
+    _CheckApps $OMPSProfilesConfiguration.winget.core $CurrentPackagesOutput $AvailableUpgradesOutput
 
     # profiles group packages
     $OMPSProfilesConfiguration.winget.groups `
     | Where-Object { $OMPSProfileConfiguration.winget.groups -contains $_.id } `
-    | ForEach-Object { _CheckApps $_.packages $AvailableUpgradesOutput }
+    | ForEach-Object { _CheckApps $_.packages $CurrentPackagesOutput $AvailableUpgradesOutput }
 
     # profile extra packages
-    _CheckApps $OMPSProfileConfiguration.winget.packages $AvailableUpgradesOutput
+    _CheckApps $OMPSProfileConfiguration.winget.packages $CurrentPackagesOutput $AvailableUpgradesOutput
 }
 
-function _CheckApps($Apps, $AvailableUpgradesOutput) {
+function _CheckApps($Apps, $CurrentPackagesOutput, $AvailableUpgradesOutput) {
     foreach ($App in $Apps) {
-        if (-Not ($AvailableUpgradesOutput -match $App)) {
+        if (-Not ($CurrentPackagesOutput -match $App)) {
+            Write-Output "Installing $App..."
+            winget install $App
             continue
         }
+        if (-Not ($AvailableUpgradesOutput -match $App)) { continue }
         Write-Output "Upgrading $App..."
         winget upgrade $App
     }
