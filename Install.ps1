@@ -55,6 +55,9 @@ Initialize-OhMyPosh
 Write-Host "Initializing Windows Terminal..."
 Initialize-WindowsTerminal
 
+Write-Host "Configuring WinGet..."
+Update-WinGetSettings $PSScriptRoot
+
 Write-Host "Installing WinGet packages..."
 Update-WinGetPackages
 
