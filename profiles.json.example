@@ -2,6 +2,9 @@
   "profiles": [
     {
       "id": "pc",
+      "wsl": {
+        "distribution": "Ubuntu"
+      },
       "winget": {
         "groups": [
           "development",

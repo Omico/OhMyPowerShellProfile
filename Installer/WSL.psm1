@@ -1,5 +1,15 @@
-function Install-WSL($Distribution = "Ubuntu") {
-    if (Test-IsVirtualMachine) { return }
+function Install-WSL {
+    if (Test-IsVirtualMachine) {
+        Write-Host "Skipping WSL installation in the virtual machine."
+        return
+    }
+    if ($null -eq $OMPSProfileConfiguration.wsl) { return }
     Write-Host "Installing WSL..."
-    wsl --install -d $Distribution
+    $Distribution = $OMPSProfileConfiguration.wsl.distribution
+    if ($null -eq $Distribution) {
+        wsl --install
+    }
+    else {
+        wsl --install -d $Distribution
+    }
 }
