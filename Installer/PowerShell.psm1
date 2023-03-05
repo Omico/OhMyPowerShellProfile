@@ -4,6 +4,7 @@ function Initialize-PowerShellModules {
         "PSReadLine"
         "PSWindowsUpdate"
         "Terminal-Icons"
+        "lazy-posh-git"
         "posh-git"
     )
     $Modules | ForEach-Object {
