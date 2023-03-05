@@ -2,6 +2,16 @@
   "profiles": [
     {
       "id": "pc",
+      "features": [
+        "Client-ProjFS",
+        "Containers",
+        "HypervisorPlatform",
+        "Microsoft-Hyper-V-All",
+        "NetFx3",
+        "NetFx4-AdvSrvs",
+        "VirtualMachinePlatform",
+        "WorkFolders-Client"
+      ],
       "wsl": {
         "distribution": "Ubuntu"
       },

@@ -1,16 +1,7 @@
 function Enable-WindowsFeatures {
     if (Test-IsVirtualMachine) { return }
     Write-Host "Enabling Windows features..."
-    $WindowsFeatures = @(
-        "Client-ProjFS"
-        "Containers"
-        "HypervisorPlatform"
-        "Microsoft-Hyper-V-All"
-        "NetFx3"
-        "NetFx4-AdvSrvs"
-        "VirtualMachinePlatform"
-        "WorkFolders-Client"
-    )
+    $WindowsFeatures = $OMPSProfileConfiguration.features
     $WindowsFeatures | ForEach-Object {
         $WindowsFeaturesState = (
             Get-WindowsOptionalFeature -Online -FeatureName $_ `
