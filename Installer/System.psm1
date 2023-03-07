@@ -20,7 +20,9 @@ function Enable-WindowsFeatures {
 function Uninstall-ProvisionedPackages {
     $Packages = @(
         "Clipchamp.Clipchamp"
+        "Microsoft.MicrosoftOfficeHub"
         "Microsoft.MicrosoftSolitaireCollection"
+        "MicrosoftTeams"
     )
     $AppProvisionedPackage = Get-AppProvisionedPackage -Online
     foreach ($Package in $Packages) {
