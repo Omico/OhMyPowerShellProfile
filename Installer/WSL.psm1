@@ -6,10 +6,5 @@ function Install-WSL {
     if ($null -eq $OMPSProfileConfiguration.wsl) { return }
     Write-Host "Installing WSL..."
     $Distribution = $OMPSProfileConfiguration.wsl.distribution
-    if ($null -eq $Distribution) {
-        wsl --install
-    }
-    else {
-        wsl --install -d $Distribution
-    }
+    Install-WSL $Distribution
 }
