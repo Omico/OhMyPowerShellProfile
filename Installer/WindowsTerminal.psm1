@@ -18,7 +18,7 @@ function Initialize-WindowsTerminal {
         "Windows PowerShell"
     )
     $WindowsTerminalSettings.profiles.list | ForEach-Object {
-        if ($HiddenProfiles -ccontains $_.name) {
+        if ($HiddenProfiles -contains $_.name) {
             $_ | Add-Member -Name "hidden" -Value $true -MemberType NoteProperty -Force
         }
         if ($_.name -eq "PowerShell") {
