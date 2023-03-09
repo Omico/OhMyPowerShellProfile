@@ -56,7 +56,7 @@ Write-Host "Initializing Windows Terminal..."
 Initialize-WindowsTerminal
 
 Write-Host "Configuring WinGet..."
-Update-WinGetSettings $PSScriptRoot
+Update-WinGetSettings
 
 Write-Host "Installing WinGet packages..."
 Update-WinGetPackages
