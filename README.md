@@ -32,8 +32,6 @@ Start-Process wt -verb RunAs pwsh
 
 Run the following command and modify the `profiles.json` to fit your need.
 
-Note: You can ignore this step if you don't need advanced customization.
-
 ```shell
 cp profiles.json.example profiles.json
 ```
