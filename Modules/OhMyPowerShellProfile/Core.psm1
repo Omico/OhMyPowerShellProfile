@@ -17,16 +17,19 @@ function Set-GlobalOMPSProfileConfiguration($ProfileId = $OMPSProfileId) {
 function Get-OMPSProfilesConfiguration($ProfilesFile = "profiles.json") {
     $ProfileNotExists = $null -eq $(Get-Item $ProfilesFile -ErrorAction SilentlyContinue)
     if ($ProfileNotExists) {
-        Write-Error "Profile $(Get-Item $ProfilesFile) not found." -ErrorAction Stop
+        Write-Error "Profiles does not exists." -ErrorAction Stop
     }
     return Get-Content $ProfilesFile | ConvertFrom-Json
 }
 
 function Get-OMPSProfileConfiguration($ProfileId = $OMPSProfileId) {
+    if ($null -eq $ProfileId) {
+        Write-Error "Profile id not found." -ErrorAction Stop
+    }
     $Profile = $OMPSProfilesConfiguration.profiles | Where-Object { $_.id -eq $ProfileId } | Select-Object -First 1
     $ProfileNotExists = $null -eq $Profile
     if ($ProfileNotExists) {
-        Write-Error "Profile $ProfileId not found." -ErrorAction Stop
+        Write-Error "Profile [$ProfileId] not found." -ErrorAction Stop
     }
     return $Profile
 }
