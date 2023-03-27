@@ -17,6 +17,18 @@ function Enable-WindowsFeatures {
     }
 }
 
+function Enable-DeveloperMode {
+    $RegistryKeyPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock"
+    if (-Not (Test-Path -Path $RegistryKeyPath)) {
+        New-Item -Path $RegistryKeyPath -ItemType Directory -Force | Out-Null
+    }
+    New-ItemProperty `
+        -Path $RegistryKeyPath `
+        -Name AllowDevelopmentWithoutDevLicense `
+        -PropertyType DWORD `
+        -Value 1 -Force | Out-Null
+}
+
 function Uninstall-ProvisionedPackages {
     $Packages = @(
         "Clipchamp.Clipchamp"

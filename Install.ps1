@@ -39,6 +39,9 @@ Set-GlobalOMPSProfileConfiguration $ProfileId
 Enable-WindowsFeatures
 Install-WSL
 
+Write-Host "Enabling developer mode..."
+Enable-DeveloperMode
+
 Write-Host "Uninstalling provisioned packages..."
 Uninstall-ProvisionedPackages
 
