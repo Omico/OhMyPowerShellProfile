@@ -19,3 +19,7 @@ foreach ($Module in $Modules) {
 
 Initialize-PSReadLine
 Initialize-OhMyPosh
+
+if ("$($PWD.Path)" -eq "$env:SystemRoot\System32") {
+    Set-Location $HOME
+}
