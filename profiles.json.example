@@ -12,9 +12,6 @@
         "VirtualMachinePlatform",
         "WorkFolders-Client"
       ],
-      "wsl": {
-        "distribution": "Ubuntu"
-      },
       "winget": {
         "groups": [
           "development",
@@ -41,8 +38,7 @@
         ]
       },
       {
-        "id": "extra",
-        "packages": []
+        "id": "extra"
       }
     ]
   }
