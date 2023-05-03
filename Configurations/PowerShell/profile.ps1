@@ -1,9 +1,11 @@
 # Import-Module PSProfiler
 # Measure-Script { }
 
-Get-ChildItem -Path $PSScriptRoot\Modules\OhMyPowerShellProfile -Filter *.psm1 | Import-Module
+$Global:OMPSModuleDirectory = "$PSScriptRoot\Modules\OhMyPowerShellProfile"
 
-Set-GlobalOMPSProfilesConfiguration $PSScriptRoot\Modules\OhMyPowerShellProfile\profiles.json
+Get-ChildItem -Path $OMPSModuleDirectory -Filter *.psm1 | Import-Module
+
+Set-GlobalOMPSProfilesConfiguration $OMPSModuleDirectory\profiles.json
 Set-GlobalOMPSProfileConfiguration
 
 # If opened by Windows Terminal, change the default location to $HOME.
