@@ -14,7 +14,6 @@ if ("$($PWD.Path)" -eq "$env:SystemRoot\System32") {
 }
 
 $Modules = @(
-    "Terminal-Icons"
     "PSWindowsUpdate"
 )
 

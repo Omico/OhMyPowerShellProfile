@@ -3,7 +3,6 @@ function Initialize-PowerShellModules {
         "PSProfiler"
         "PSReadLine"
         "PSWindowsUpdate"
-        "Terminal-Icons"
         "lazy-posh-git"
         "posh-git"
     )
