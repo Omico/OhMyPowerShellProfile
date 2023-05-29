@@ -26,10 +26,10 @@ function Get-OMPSProfileConfiguration($ProfileId = $OMPSProfileId) {
     if ($null -eq $ProfileId) {
         Write-Error "Profile id not found." -ErrorAction Stop
     }
-    $Profile = $OMPSProfilesConfiguration.profiles | Where-Object { $_.id -eq $ProfileId } | Select-Object -First 1
-    $ProfileNotExists = $null -eq $Profile
+    $OMPSProfile = $OMPSProfilesConfiguration.profiles | Where-Object { $_.id -eq $ProfileId } | Select-Object -First 1
+    $ProfileNotExists = $null -eq $OMPSProfile
     if ($ProfileNotExists) {
         Write-Error "Profile [$ProfileId] not found." -ErrorAction Stop
     }
-    return $Profile
+    return $OMPSProfile
 }
