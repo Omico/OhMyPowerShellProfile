@@ -16,9 +16,9 @@ if ($null -eq $OMPSModuleDirectory) {
     return
 }
 
-git pull
+git -C "$PSScriptRoot" pull
 
-$PSModules = Get-ChildItem -Path ".\Modules\OhMyPowerShellProfile" -Filter *.psm1
+$PSModules = Get-ChildItem -Path "$PSScriptRoot\Modules\OhMyPowerShellProfile" -Filter *.psm1
 $PSModules | Import-Module
 
 foreach ($PSModule in $PSModules) {
