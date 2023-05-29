@@ -16,6 +16,8 @@ if ($null -eq $OMPSModuleDirectory) {
     return
 }
 
+git pull
+
 $PSModules = Get-ChildItem -Path ".\Modules\OhMyPowerShellProfile" -Filter *.psm1
 $PSModules | Import-Module
 
