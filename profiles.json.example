@@ -20,6 +20,9 @@
         "packages": [
           "Git.Git"
         ]
+      },
+      "environments": {
+        "OMPSPrivateDirectory": ""
       }
     }
   ],

@@ -33,3 +33,11 @@ function Get-OMPSProfileConfiguration($ProfileId = $OMPSProfileId) {
     }
     return $OMPSProfile
 }
+
+function Update-OMPSEnvironments($ProfileId, $OMPSModuleDirectory) {
+    $EnvironmentsContent = "`$global:OMPSProfileId = `"$ProfileId`"`n"
+    foreach ($Environment in $OMPSProfileConfiguration.environments) {
+        $EnvironmentsContent += "`$global:$($Environment.psobject.properties.name) = `"$($Environment.psobject.properties.value)`"`n"
+    }
+    New-Item -Path "$OMPSModuleDirectory\Environments.psm1" -Force -Value "$EnvironmentsContent" > $null
+}

@@ -55,9 +55,7 @@ function Initialize-PowerShellProfile($InstallScriptPath, $ProfileId) {
         -Target "$InstallScriptPath\profiles.json" `
         -CanHardLink $CanHardLink
 
-    New-Item -Path "$OhMyPowerShellProfileDirectory\Environments.psm1" -Force -Value `
-        "`$global:OMPSProfileId = `"$ProfileId`"`n" `
-        > $null
+    Update-OMPSEnvironments $ProfileId $OhMyPowerShellProfileDirectory
 }
 
 function Test-CanHardLink($Path, $Target) {

@@ -33,6 +33,11 @@ val exampleProfiles = Profiles(
                     "Git.Git",
                 ),
             ),
+            environments = mapOf(
+                // Use absolute paths in actual use
+                // Path(".").normalize().absolutePathString()
+                "OMPSPrivateDirectory" to "",
+            ),
         ),
     ),
     winget = Profiles.Winget(
@@ -88,6 +93,7 @@ data class Profile(
     val features: List<String> = listOf(),
     val wsl: Wsl = Wsl(),
     val winget: Winget,
+    val environments: Map<String, String> = mapOf(),
 ) {
     @Serializable
     data class Wsl(
