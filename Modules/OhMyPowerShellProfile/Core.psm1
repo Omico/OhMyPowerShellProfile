@@ -1,6 +1,6 @@
 ######################### Global Variables ###########################################
 function Set-GlobalOMPSProfilesConfiguration($ProfilesFile = "profiles.json") {
-    $global:OMPSProfilesConfiguration = Get-OMPSProfilesConfiguration $ProfilesFile
+    $Global:OMPSProfilesConfiguration = Get-OMPSProfilesConfiguration $ProfilesFile
     if ($null -eq $OMPSProfilesConfiguration) {
         Write-Error "Failed to initialize profiles configuration from $(Get-Item $ProfilesFile)." -ErrorAction Stop
     }
@@ -10,7 +10,7 @@ function Set-GlobalOMPSProfileConfiguration($ProfileId = $OMPSProfileId) {
     if ($null -eq $ProfileId) {
         Write-Error "Profile id cannot be null." -ErrorAction Stop
     }
-    $global:OMPSProfileConfiguration = Get-OMPSProfileConfiguration $ProfileId
+    $Global:OMPSProfileConfiguration = Get-OMPSProfileConfiguration $ProfileId
 }
 ######################################################################################
 
@@ -35,9 +35,9 @@ function Get-OMPSProfileConfiguration($ProfileId = $OMPSProfileId) {
 }
 
 function Update-OMPSEnvironments($ProfileId, $OMPSModuleDirectory) {
-    $EnvironmentsContent = "`$global:OMPSProfileId = `"$ProfileId`"`n"
+    $EnvironmentsContent = "`$Global:OMPSProfileId = `"$ProfileId`"`n"
     foreach ($Environment in $OMPSProfileConfiguration.environments) {
-        $EnvironmentsContent += "`$global:$($Environment.psobject.properties.name) = `"$($Environment.psobject.properties.value)`"`n"
+        $EnvironmentsContent += "`$Global:$($Environment.psobject.properties.name) = `"$($Environment.psobject.properties.value)`"`n"
     }
     New-Item -Path "$OMPSModuleDirectory\Environments.psm1" -Force -Value "$EnvironmentsContent" > $null
 }
