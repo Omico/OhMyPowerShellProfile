@@ -5,7 +5,11 @@ $Global:OMPSModuleDirectory = "$PSScriptRoot\Modules\OhMyPowerShellProfile"
 
 Get-ChildItem -Path $OMPSModuleDirectory -Filter *.psm1 | Import-Module
 
-Set-GlobalOMPSProfilesConfiguration $OMPSModuleDirectory\profiles.json
+if ("" -eq $OMPSPrivateDirectory) {
+    $OMPSPrivateDirectory = $OMPSModuleDirectory
+}
+
+Set-GlobalOMPSProfilesConfiguration $OMPSPrivateDirectory\profiles.json
 Set-GlobalOMPSProfileConfiguration
 
 # If opened by Windows Terminal, change the default location to $HOME.
