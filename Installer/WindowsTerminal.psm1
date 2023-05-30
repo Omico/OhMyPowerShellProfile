@@ -6,7 +6,7 @@ function Initialize-WindowsTerminal {
     $WindowsTerminalSettings.profiles.defaults = @{
         "colorScheme" = "One Half Dark"
         "font" = @{
-            "face" = "FiraCode NF"
+            "face" = "FiraCode Nerd Font"
         }
         "opacity" = 70
         "useAcrylic" = $true
