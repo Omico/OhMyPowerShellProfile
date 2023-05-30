@@ -24,3 +24,5 @@ $PSModules | Import-Module
 foreach ($PSModule in $PSModules) {
     Copy-Item -Path "$PSModule" -Destination "$OMPSModuleDirectory\$($PSModule.Name)" -Force
 }
+
+Update-OMPSEnvironments $OMPSProfileId $OMPSModuleDirectory
