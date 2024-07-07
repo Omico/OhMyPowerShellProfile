@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="generateProfiles" type="KotlinStandaloneScriptRunConfigurationType">
+    <module name="OhMyPowerShellProfile" />
+    <option name="PROGRAM_PARAMETERS" value="-Xplugin=&quot;${KOTLIN_HOME}/lib/kotlin-serialization-compiler-plugin.jar&quot;" />
+    <shortenClasspath name="NONE" />
+    <option name="filePath" value="$PROJECT_DIR$/profiles.example.main.kts" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
